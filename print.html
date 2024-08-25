@@ -1,0 +1,290 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>TLSD PRISM Open Docs</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="windows.html"><strong aria-hidden="true">1.</strong> Windows 实用指南</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">TLSD PRISM Open Docs</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="在x64-windows上运行windows-rt"><a class="header" href="#在x64-windows上运行windows-rt">在X64 Windows上运行Windows RT</a></h1>
+<hr />
+<p>这几天实在闲的没事干，于是乎就在网上翻镜像找,结果找到了Windows RT 8.1的完整镜像，但是是个ESD，为了大家方便，我已经把ESD镜像改成了ISO，里面是wim，可以直接下载。</p>
+<h2 id="创建硬盘"><a class="header" href="#创建硬盘">创建硬盘</a></h2>
+<p>这里引用BetaWorld百科安装Windows 10 ARM64的方法，依葫芦画瓢，安装Windows RT 8.1。</p>
+<p>首先创建硬盘，管理员cmd输入diskpart，回车。
+依次输入以下命令：</p>
+<pre><code class="language-bat">
+create vdisk file="C:\test\usb.vhd"（这里是镜像位置，什么地方都行） maximum=32000 type=expandable （镜像大小必须是2的n次方，这里指定32GB）
+select vdisk file="C:\test\usb.vhd"
+attach vdisk
+convert gpt
+create partition efi size=100（创建EFI分区）
+format fs=fat32 quick
+assign letter=p（指定卷标）
+create partition primary（创建系统分区）
+format quick
+assign letter=w
+exit
+</code></pre>
+<h2 id="释放镜像"><a class="header" href="#释放镜像">释放镜像</a></h2>
+<p>将ISO里的install.wim解压到某个位置，或者直接挂载ISO，假设盘符为D，以管理员身份运行cmd，执行以下命令：</p>
+<pre><code class="language-bat">
+dism /apply-image /imagefile:D:\install.wim /index:1 /applydir:W:
+bcdboot W:\Windows /s P: /f uefi
+</code></pre>
+<p>完成后弹出P或W盘。注意，P盘符会有残留，不用担心，重启就会消失。</p>
+<h2 id="启动安装"><a class="header" href="#启动安装">启动安装</a></h2>
+<p>普通的QEMU运行这个会出问题，所以这里要使用QEMU-winrt，这个项目是开源的，项目链接<a href="https://github.com/binarymaster/qemu/releases">在这</a></p>
+<h3 id="启动模拟器"><a class="header" href="#启动模拟器">启动模拟器</a></h3>
+<p>进入QEMU-winrt安装目录，执行以下命令：</p>
+<pre><code class="language-bat">
+G:\qemuwinrt\qemu-system-arm -M virt,highmem=false ^
+-cpu cortex-a15 -accel tcg,thread=multi -m 2G ^
+-bios QEMU_EFI_1512_driver1998.fd -device VGA ^
+-device usb-kbd,id=kbd -device usb-tablet,id=mice ^
+-drive id=usbcdrom,if=none,media=cdrom,format=raw,file=winpe_arm32.iso.uibak,readonly=on ^
+-device usb-storage,drive=usbcdrom -drive id=mydrive,if=none,file=C:\test\usb.vhd ^
+-device sd-card,drive=mydrive -nic user,model=virtio
+</code></pre>
+<h3 id="安装系统"><a class="header" href="#安装系统">安装系统</a></h3>
+<p>开机后按F2，进入EFI设置，如果要修改分辨率，依次进入Device Manager、OVMF Platform Configuration，将Change Preferred项改为你想要的分辨率（例如1024x768），然后选Commit Changes and Exit，在QEMU菜单中选Machine下的Reset重启。</p>
+<h3 id="进入桌面"><a class="header" href="#进入桌面">进入桌面</a></h3>
+<p>耐心等待系统安装完成，通过OOBE并进入Press Ctrl-Alt-Delete to Unlock界面；</p>
+<p>或者强制退出QEMU，并挂载C:\test\usb.vhd；</p>
+<p>在宿主机打开注册表编辑器，单击HKEY_LOCAL_MACHINE，在菜单中选择“文件(F)→加载配置单元(L)...”，打开W:\Windows\System32\config\SOFTWARE，任意命名项（例如，arm），展开该项并定位至\Microsoft\Windows NT\CurrentVersion\Winlogon（不展开），在右侧新建字符串值，名为AutoAdminLogon，值为1，新建字符串值，名为DefaultUserName，值为Administrator，新建字符串值，名为DefaultPassword，值为在OOBE中设置的密码，完成后回到本机HKEY_LOCAL_MACHINE，在菜单中选择“文件(F)→卸载配置单元(U)...”，在弹出的对话框中选择“是(Y)”；</p>
+<h3 id="安装完成"><a class="header" href="#安装完成">安装完成</a></h3>
+<p>到这里系统就安装完成了。</p>
+<h2 id="下载链接"><a class="header" href="#下载链接">下载链接</a></h2>
+<p><a href="https://starmoe-my.sharepoint.com/:u:/g/personal/starmoe_starmoe_onmicrosoft_com/EcWz9HyQAndEt-gZyumG2rgBDlI73b779t1-xh0mUljfpw?e=be5jzj">ISO文件</a>，大小3.24GB，SHA256: B7AC0BDBD409AC0A0DE0066D233CEBF957D70B5D8F88A4133BEF663A890E0174
+（Host：OneDrive for Business - 亚太地区 - Starmoe-暮光工作室）<br />
+<a href="https://starmoe-my.sharepoint.com/:u:/g/personal/starmoe_starmoe_onmicrosoft_com/EfVzz4Qze2lFoRXJmXgpkHIBivWIj-Tfcq7IcDAQbn7u1w?e=5RUy7O">已经做好的vhd</a>，大小6.36GB，SHA256: 3453876D50097366C53EFADC699F2F3BD9C5142780C4F917E38B58843E8FCD72
+(Host：OneDrive for Business - 亚太地区 - Starmoe-暮光工作室)</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
