@@ -3,8 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>TLSD PRISM Open Docs</title>
-        <meta name="robots" content="noindex">
+        <title>拆除早期的Windows时间炸弹 - TLSD PRISM Open Docs</title>
 
 
         <!-- Custom HTML head -->
@@ -13,21 +12,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
@@ -36,7 +35,7 @@
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -89,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="winintro/index.html"><strong aria-hidden="true">1.</strong> Windows 实用指南</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="winintro/winrt.html"><strong aria-hidden="true">1.1.</strong> QEMU运行Windows RT 8.1</a></li><li class="chapter-item expanded "><a href="winintro/winbomb.html"><strong aria-hidden="true">1.2.</strong> 拆除早期的Windows时间炸弹</a></li></ol></li><li class="chapter-item expanded "><a href="linintro/index.html"><strong aria-hidden="true">2.</strong> Linux 实用指南</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="linintro/aur.html"><strong aria-hidden="true">2.1.</strong> 在Arch里安装AUR软件</a></li></ol></li><li class="chapter-item expanded "><a href="phiintro/index.html"><strong aria-hidden="true">3.</strong> Phigros/Phira 实用指南</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../winintro/index.html"><strong aria-hidden="true">1.</strong> Windows 实用指南</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../winintro/winrt.html"><strong aria-hidden="true">1.1.</strong> QEMU运行Windows RT 8.1</a></li><li class="chapter-item expanded "><a href="../winintro/winbomb.html" class="active"><strong aria-hidden="true">1.2.</strong> 拆除早期的Windows时间炸弹</a></li></ol></li><li class="chapter-item expanded "><a href="../linintro/index.html"><strong aria-hidden="true">2.</strong> Linux 实用指南</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../linintro/aur.html"><strong aria-hidden="true">2.1.</strong> 在Arch里安装AUR软件</a></li></ol></li><li class="chapter-item expanded "><a href="../phiintro/index.html"><strong aria-hidden="true">3.</strong> Phigros/Phira 实用指南</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -145,7 +144,7 @@
                     <h1 class="menu-title">TLSD PRISM Open Docs</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
 
@@ -174,61 +173,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <p>本章主要讲在Windows环境进行整活或者配置环境</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="在x64-windows上运行windows-rt"><a class="header" href="#在x64-windows上运行windows-rt">在X64 Windows上运行Windows RT</a></h1>
-<hr />
-<p>这几天实在闲的没事干，于是乎就在网上翻镜像找,结果找到了Windows RT 8.1的完整镜像，但是是个ESD，为了大家方便，我已经把ESD镜像改成了ISO，里面是wim，可以直接下载。</p>
-<h2 id="创建硬盘"><a class="header" href="#创建硬盘">创建硬盘</a></h2>
-<p>这里引用BetaWorld百科安装Windows 10 ARM64的方法，依葫芦画瓢，安装Windows RT 8.1。</p>
-<p>首先创建硬盘，管理员cmd输入diskpart，回车。
-依次输入以下命令：</p>
-<pre><code class="language-bat">
-create vdisk file="C:\test\usb.vhd"（这里是镜像位置，什么地方都行） maximum=32000 type=expandable （镜像大小必须是2的n次方，这里指定32GB）
-select vdisk file="C:\test\usb.vhd"
-attach vdisk
-convert gpt
-create partition efi size=100（创建EFI分区）
-format fs=fat32 quick
-assign letter=p（指定卷标）
-create partition primary（创建系统分区）
-format quick
-assign letter=w
-exit
-</code></pre>
-<h2 id="释放镜像"><a class="header" href="#释放镜像">释放镜像</a></h2>
-<p>将ISO里的install.wim解压到某个位置，或者直接挂载ISO，假设盘符为D，以管理员身份运行cmd，执行以下命令：</p>
-<pre><code class="language-bat">
-dism /apply-image /imagefile:D:\install.wim /index:1 /applydir:W:
-bcdboot W:\Windows /s P: /f uefi
-</code></pre>
-<p>完成后弹出P或W盘。注意，P盘符会有残留，不用担心，重启就会消失。</p>
-<h2 id="启动安装"><a class="header" href="#启动安装">启动安装</a></h2>
-<p>普通的QEMU运行这个会出问题，所以这里要使用QEMU-winrt，这个项目是开源的，项目链接<a href="https://github.com/binarymaster/qemu/releases">在这</a></p>
-<h3 id="启动模拟器"><a class="header" href="#启动模拟器">启动模拟器</a></h3>
-<p>进入QEMU-winrt安装目录，执行以下命令：</p>
-<pre><code class="language-bat">
-G:\qemuwinrt\qemu-system-arm -M virt,highmem=false ^
--cpu cortex-a15 -accel tcg,thread=multi -m 2G ^
--bios QEMU_EFI_1512_driver1998.fd -device VGA ^
--device usb-kbd,id=kbd -device usb-tablet,id=mice ^
--drive id=usbcdrom,if=none,media=cdrom,format=raw,file=winpe_arm32.iso.uibak,readonly=on ^
--device usb-storage,drive=usbcdrom -drive id=mydrive,if=none,file=C:\test\usb.vhd ^
--device sd-card,drive=mydrive -nic user,model=virtio
-</code></pre>
-<h3 id="安装系统"><a class="header" href="#安装系统">安装系统</a></h3>
-<p>开机后按F2，进入EFI设置，如果要修改分辨率，依次进入Device Manager、OVMF Platform Configuration，将Change Preferred项改为你想要的分辨率（例如1024x768），然后选Commit Changes and Exit，在QEMU菜单中选Machine下的Reset重启。</p>
-<h3 id="进入桌面"><a class="header" href="#进入桌面">进入桌面</a></h3>
-<p>耐心等待系统安装完成，通过OOBE并进入Press Ctrl-Alt-Delete to Unlock界面；</p>
-<p>或者强制退出QEMU，并挂载C:\test\usb.vhd；</p>
-<p>在宿主机打开注册表编辑器，单击HKEY_LOCAL_MACHINE，在菜单中选择“文件(F)→加载配置单元(L)...”，打开W:\Windows\System32\config\SOFTWARE，任意命名项（例如，arm），展开该项并定位至\Microsoft\Windows NT\CurrentVersion\Winlogon（不展开），在右侧新建字符串值，名为AutoAdminLogon，值为1，新建字符串值，名为DefaultUserName，值为Administrator，新建字符串值，名为DefaultPassword，值为在OOBE中设置的密码，完成后回到本机HKEY_LOCAL_MACHINE，在菜单中选择“文件(F)→卸载配置单元(U)...”，在弹出的对话框中选择“是(Y)”；</p>
-<h3 id="安装完成"><a class="header" href="#安装完成">安装完成</a></h3>
-<p>到这里系统就安装完成了。</p>
-<h2 id="下载链接"><a class="header" href="#下载链接">下载链接</a></h2>
-<p><a href="https://starmoe-my.sharepoint.com/:u:/g/personal/starmoe_starmoe_onmicrosoft_com/EcWz9HyQAndEt-gZyumG2rgBDlI73b779t1-xh0mUljfpw?e=be5jzj">ISO文件</a>，大小3.24GB，SHA256: B7AC0BDBD409AC0A0DE0066D233CEBF957D70B5D8F88A4133BEF663A890E0174
-（Host：OneDrive for Business - 亚太地区 - Starmoe-暮光工作室）<br />
-<a href="https://starmoe-my.sharepoint.com/:u:/g/personal/starmoe_starmoe_onmicrosoft_com/EfVzz4Qze2lFoRXJmXgpkHIBivWIj-Tfcq7IcDAQbn7u1w?e=5RUy7O">已经做好的vhd</a>，大小6.36GB，SHA256: 3453876D50097366C53EFADC699F2F3BD9C5142780C4F917E38B58843E8FCD72
-(Host：OneDrive for Business - 亚太地区 - Starmoe-暮光工作室)</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="拆除早期的windows时间炸弹"><a class="header" href="#拆除早期的windows时间炸弹">拆除早期的Windows时间炸弹</a></h1>
+                        <h1 id="拆除早期的windows时间炸弹"><a class="header" href="#拆除早期的windows时间炸弹">拆除早期的Windows时间炸弹</a></h1>
 <p>如果使用测试版Windows系统老要担心时间炸弹，未免有点让人不爽。于是就有许多人研究如何使得时间过了以后系统也不会反常，这种行为称为“拆炸弹”或者“破（解）炸弹”。</p>
 <p>有时候，拆炸弹会有一些附带效果。Windows 2000测试版中，拆炸弹可以同时去除水印。<del>另一些效果则属于副作用，比如有的情况下拆除炸弹会导致系统无法激活。</del>(这是因为替换不正确的SPP文件后SPP服务挂掉了，属于方法不完美而不是拆炸弹本身的问题。)</p>
 <p>目前，NT5已经有确定可行的办法拆炸弹，NT6以上部分系统也有。但是另一些办法则还有争议。</p>
@@ -336,18 +281,18 @@ dism /unmount-wim /MountDir: 盘符:\文件夹名 /discard
 <p>注释以及引用<br />
 [1] :由@BilinSun 著作，可能保留所有权利。</p>
 <p>②由@维超尼尼 著作，保留所有权利。</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="linux-实用指南"><a class="header" href="#linux-实用指南">Linux 实用指南</a></h1>
-<p>本章讲述在Linux环境下的常用软件配置及使用（以Arch Linux为例子）</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="在arch里安装aur软件"><a class="header" href="#在arch里安装aur软件">在Arch里安装AUR软件</a></h1>
-<p>如何在</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="phigrosphira-实用指南"><a class="header" href="#phigrosphira-实用指南">Phigros/Phira 实用指南</a></h1>
-<p>本章主要讲述如何使用PhiEdit进行写谱以及使用mid2phi等脚本转谱</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../winintro/winrt.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
 
+                            <a rel="next prefetch" href="../linintro/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -355,7 +300,13 @@ dism /unmount-wim /MountDir: 盘符:\文件夹名 /discard
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../winintro/winrt.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
+                    <a rel="next prefetch" href="../linintro/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
             </nav>
 
         </div>
@@ -384,21 +335,16 @@ dism /unmount-wim /MountDir: 盘符:\文件夹名 /discard
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
 
-        <script>
-        window.addEventListener('load', function() {
-            window.setTimeout(window.print, 100);
-        });
-        </script>
 
     </div>
     </body>
