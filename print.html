@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="winintro/index.html"><strong aria-hidden="true">1.</strong> Windows 实用指南</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="winintro/winrt.html"><strong aria-hidden="true">1.1.</strong> QEMU运行Windows RT 8.1</a></li><li class="chapter-item expanded "><a href="winintro/winbomb.html"><strong aria-hidden="true">1.2.</strong> 拆除早期的Windows时间炸弹</a></li></ol></li><li class="chapter-item expanded "><a href="linintro/index.html"><strong aria-hidden="true">2.</strong> Linux 实用指南</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="linintro/aur.html"><strong aria-hidden="true">2.1.</strong> 在Arch里安装AUR软件</a></li></ol></li><li class="chapter-item expanded "><a href="phiintro/index.html"><strong aria-hidden="true">3.</strong> Phigros/Phira 实用指南</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="first.html">前言</a></li><li class="chapter-item expanded "><a href="winintro/index.html"><strong aria-hidden="true">1.</strong> Windows 实用指南</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="winintro/winrt.html"><strong aria-hidden="true">1.1.</strong> QEMU运行Windows RT 8.1</a></li><li class="chapter-item expanded "><a href="winintro/winbomb.html"><strong aria-hidden="true">1.2.</strong> 拆除早期的Windows时间炸弹</a></li><li class="chapter-item expanded "><a href="winintro/9xbomb.html"><strong aria-hidden="true">1.3.</strong> Windows 9x如何拆弹?</a></li></ol></li><li class="chapter-item expanded "><a href="linintro/index.html"><strong aria-hidden="true">2.</strong> Linux 实用指南</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="linintro/aur.html"><strong aria-hidden="true">2.1.</strong> 在Arch里安装AUR软件</a></li><li class="chapter-item expanded "><a href="linintro/vncpro.html"><strong aria-hidden="true">2.2.</strong> 远程使用Linux服务器桌面</a></li></ol></li><li class="chapter-item expanded "><a href="phiintro/index.html"><strong aria-hidden="true">3.</strong> 音游写谱实用指南</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -174,7 +174,16 @@
 
                 <div id="content" class="content">
                     <main>
-                        <p>本章主要讲在Windows环境进行整活或者配置环境</p>
+                        <h1 id="前言"><a class="header" href="#前言">前言</a></h1>
+<p>本开放文档作为棱镜开源项目的一部分，可在GitHub查阅其源码。</p>
+<p>如未特殊声明，本文档均架设读者（也就是你）对计算机有一定的了解，或者涉及本书的某些内容，对此有一定知识储备；如果您对电脑/计算机一无所知，那么这篇文档可能不适合您，请退出此网站，以免浪费您的宝贵时间。</p>
+<blockquote>
+<p>本文档仍在建设中，欢迎大家积极<a href="https://github.com/EastCation/docs">贡献</a>！</p>
+</blockquote>
+<p>TLSD PRISM Open Docs</p>
+<p>© 2024 by PRISM Development is licensed under CC BY-NC-SA 4.0.</p>
+<p>To view a copy of this license, <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">click this link</a></p>
+<div style="break-before: page; page-break-before: always;"></div><p>本章主要讲在Windows环境进行整活或者配置环境</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="在x64-windows上运行windows-rt"><a class="header" href="#在x64-windows上运行windows-rt">在X64 Windows上运行Windows RT</a></h1>
 <hr />
 <p>这几天实在闲的没事干，于是乎就在网上翻镜像找,结果找到了Windows RT 8.1的完整镜像，但是是个ESD，为了大家方便，我已经把ESD镜像改成了ISO，里面是wim，可以直接下载。</p>
@@ -336,12 +345,93 @@ dism /unmount-wim /MountDir: 盘符:\文件夹名 /discard
 <p>注释以及引用<br />
 [1] :由@BilinSun 著作，可能保留所有权利。</p>
 <p>②由@维超尼尼 著作，保留所有权利。</p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="windows-9x如何拆弹"><a class="header" href="#windows-9x如何拆弹">Windows 9X如何拆弹？</a></h2>
+<p>如你们所知，自从Windows Chicago某个版本开始，Win9x beta也有了时间炸弹，这里让EC讲解一下如何拆解Windows 9x/me时间炸弹</p>
+<p>原料：正式版和对应的测试版Windows系统各一个、一个可以启机的软盘镜像(要有DOS文件资源管理器，直接copy会告诉你找不到文件)</p>
+<p>操作步骤</p>
+<p>1.启动正式版的Windows系统，插入软盘，并在软盘下新建一个文件夹，我这以Windows 98为例</p>
+<p>2.复制C盘根目录下的io.sys, 到你软盘里的文件夹</p>
+<blockquote>
+<p>注意: 千万不要复制到软盘根目录，这可能会使你的软盘无法启动</p>
+</blockquote>
+<p>3.关闭虚拟机，进入测试版虚拟机并载入软盘</p>
+<p>打开DOS文件管理器，找到你复制的io.sys并复制到C盘根目录，提示覆盖确定即可</p>
+<p>再次重启进入beta版系统，可以看到时间炸弹被拆了</p>
+<p>提示: Windows Millennium替换后会将开机画面替换掉，属于正常现象</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="linux-实用指南"><a class="header" href="#linux-实用指南">Linux 实用指南</a></h1>
 <p>本章讲述在Linux环境下的常用软件配置及使用（以Arch Linux为例子）</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="在arch里安装aur软件"><a class="header" href="#在arch里安装aur软件">在Arch里安装AUR软件</a></h1>
 <p>如何在</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="phigrosphira-实用指南"><a class="header" href="#phigrosphira-实用指南">Phigros/Phira 实用指南</a></h1>
-<p>本章主要讲述如何使用PhiEdit进行写谱以及使用mid2phi等脚本转谱</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="远程使用linux服务器桌面"><a class="header" href="#远程使用linux服务器桌面">远程使用Linux服务器桌面</a></h1>
+<p>相信大家都有一个疑问：如何在浏览器里进行远程桌面访问，并且还要将对端的音频传输进来，否则只有视频，没有音频会令人很难受。</p>
+<p>那么本节内容就针对此问题提供了一个解决方案。</p>
+<h2 id="step-1部署桌面和novnc"><a class="header" href="#step-1部署桌面和novnc">Step 1.部署桌面和novnc</a></h2>
+<blockquote>
+<p>如果您在此之前已完成了此步骤，那么直接看第二步吧！</p>
+</blockquote>
+<h3 id="使用tmoe脚本推荐"><a class="header" href="#使用tmoe脚本推荐">使用tmoe脚本（推荐）</a></h3>
+<p>安装tmoe脚本的命令如下：</p>
+<pre><code class="language-bash">echo "$(curl -L l.tmoe.me)" &gt;&gt; tmoe.sh
+bash tmoe.sh
+</code></pre>
+<blockquote>
+<p>在安装过程中可能会用到管理员/root权限，请准备好管理员/root的密码。</p>
+</blockquote>
+<p>之后此脚本会引导您配置语言和设置，并且有全中文的安装过程，如果您还是不懂，请跟紧以下步骤：</p>
+<p>1.进入选择Manager还是Tools界面时，选择Tools选项，之后选择“ 1 🍭 GUI:图形界面(桌面,WM,登录管理器)” &gt; “1 🍰 rootless_DE(无root容器可运行:xfce,kde,mate,lxqt)” &gt; “1 🐭 xfce(兼容性高,简单优雅)”</p>
+<blockquote>
+<p>注意：在选择桌面时，可以根据自己喜好和服务端压力酌情选择，一般来讲xfce是最好的选择。</p>
+</blockquote>
+<p>2.停顿到“按回车键继续，输n返回”时，请按回车键继续。</p>
+<p>3.您可根据喜好和服务器负载酌情选择是否安装Electron工具箱和Chromium浏览器。</p>
+<p>4.停顿到“您是否需要配置X11VNC服务？”时，请按回车键继续。</p>
+<p>5.<em>重要</em> 停顿到“您是否需要配置novnc？”时，请按回车键继续。</p>
+<p>6.设置好vnc密码，退出tmoe脚本。</p>
+<p>7.在命令行下键入“novnc”命令后，应该会出现以下文本</p>
+<pre><code class="language-text">Using installed websockify at /usr/bin/websockify
+Starting webserver and WebSockets proxy on port 36080
+
+
+Navigate to this URL:
+
+    http://Starmoe-NuanR:36080/vnc.html?host=Starmoe-NuanR&amp;port=36080
+
+Press Ctrl-C to exit
+
+
+WebSocket server settings:
+  - Listen on :36080
+  - Web server. Web root: /usr/share/novnc
+  - No SSL/TLS support (no cert file)
+  - proxying from :36080 to localhost:5902
+</code></pre>
+<blockquote>
+<p>在此实例中，“Starmoe-NuanR”为主机名</p>
+</blockquote>
+<p>之后在浏览器键入http://&lt;你的Linux主机的局域网地址&gt;:36080/vnc.html，您应该会看到novnc的连接界面，单击“连接”，输入vnc密码后即可进入桌面。</p>
+<h3 id="手动安装"><a class="header" href="#手动安装">手动安装</a></h3>
+<blockquote>
+<p>真没想到这段教程被辉夜给咕了，愿有志之士前来补充。</p>
+</blockquote>
+<h2 id="step-2配置音频服务器"><a class="header" href="#step-2配置音频服务器">Step 2.配置音频服务器</a></h2>
+<p>我相信大多数阅读此文档的用户使用的是Windows 操作系统，接下来介绍在Windows 端设置PulseAudio服务器以及将Linux音频远程连接到此。</p>
+<blockquote>
+<p>本段文章参考了<a href="https://ciallo.work/archives/756">此博客</a></p>
+</blockquote>
+<p>由于PulseAudio官方服务端不维护了，有一个版本更新的第三方维护的，版本比较新的客户端：PulseAudio-win32可以使用。</p>
+<p>您可以<a href="https://ciallo.work/wp-content/uploads/2024/03/1711208370-pulseaudio-win32-installer-v5.zip">点此</a>进行下载（如果前者链接下载缓慢或者无法访问，请使用此<a href="https://ciallo.work/wp-content/uploads/2024/03/1711208370-pulseaudio-win32-installer-v5.zip">镜像</a>）</p>
+<p>下载完成后打开安装包安装，在配置界面确保你选中了如下图所示的选项。</p>
+<p><img src="https://ciallo.work/wp-content/uploads/2024/03/1711209767-image.png" alt="PulseAudio Server的配置页面" /></p>
+<p>之后此服务将会随计算机自动启动，请您放心，它是不吃资源的。</p>
+<h2 id="step-3将linux音频连接到此电脑"><a class="header" href="#step-3将linux音频连接到此电脑">Step 3.将Linux音频连接到此电脑</a></h2>
+<p>您可以使用如下命令将Linux的音频连接到此电脑：</p>
+<pre><code class="language-bash">export PULSE_SERVER=tcp:&lt;你电脑的地址&gt;:4713
+</code></pre>
+<p>如果您觉得每次都要这么载入一遍，嫌麻烦的话，你也可以将此命令写入你的shell变量里（例如.bashrc）</p>
+<h2 id="step-4大功告成"><a class="header" href="#step-4大功告成">Step 4.大功告成</a></h2>
+<p>到这里教程基本就结束了，您仅需要重新载入您的novnc即可。接下来就在您的web端桌面好好享受多媒体带来的乐趣吧！</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="音游写谱实用指南"><a class="header" href="#音游写谱实用指南">音游写谱实用指南</a></h1>
+<p>本章主要讲述如何使用PhiEdit/Arcade进行写谱以及将五线谱作为背景音乐使用</p>
 
                     </main>
 
