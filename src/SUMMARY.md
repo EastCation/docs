@@ -13,4 +13,5 @@
 
 - [音游写谱实用指南](./phiintro/readme.md)
   - [让我们开始吧](./phiintro/start.md)
+  - [认识谱面](./phiintro/1.md)
   
