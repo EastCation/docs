@@ -12,3 +12,5 @@
   - [远程使用Linux服务器桌面](./linintro/vncpro.md)
 
 - [音游写谱实用指南](./phiintro/readme.md)
+  - [让我们开始吧](./phiintro/start.md)
+  
