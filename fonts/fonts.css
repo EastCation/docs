@@ -1,5 +1,7 @@
 /* Open Sans is licensed under the Apache License, Version 2.0. See http://www.apache.org/licenses/LICENSE-2.0 */
-/* Source Code Pro is under the Open Font License. See https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL */
+/* Fira Code is under the Open Font License 1.1. See
+ * https://openfontlicense.org/open-font-license-official-text/
+ */
 
 /* open-sans-300 - latin_vietnamese_latin-ext_greek-ext_greek_cyrillic-ext_cyrillic */
 @font-face {
@@ -91,10 +93,10 @@
        url('open-sans-v17-all-charsets-800italic.woff2') format('woff2');
 }
 
-/* source-code-pro-500 - latin_vietnamese_latin-ext_greek_cyrillic-ext_cyrillic */
+/* Fira Code Regular */
 @font-face {
-  font-family: 'Source Code Pro';
+  font-family: 'Fira Code';
   font-style: normal;
   font-weight: 500;
-  src: url('source-code-pro-v11-all-charsets-500.woff2') format('woff2');
+  src: url('FiraCode-Regular.woff2') format('woff2');
 }

@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>QEMU运行Windows RT 8.1 - 萌雨社文档</title>
+        <title>安装星雨引擎 - 萌雨社文档</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../first.html">前言</a></li><li class="chapter-item expanded "><a href="../winintro/index.html"><strong aria-hidden="true">1.</strong> Windows 实用指南</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../winintro/winrt.html" class="active"><strong aria-hidden="true">1.1.</strong> QEMU运行Windows RT 8.1</a></li><li class="chapter-item expanded "><a href="../winintro/winbomb.html"><strong aria-hidden="true">1.2.</strong> 拆除早期的Windows时间炸弹</a></li><li class="chapter-item expanded "><a href="../winintro/9xbomb.html"><strong aria-hidden="true">1.3.</strong> Windows 9x如何拆弹?</a></li></ol></li><li class="chapter-item expanded "><a href="../linintro/index.html"><strong aria-hidden="true">2.</strong> Linux 实用指南</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../linintro/aur.html"><strong aria-hidden="true">2.1.</strong> 在Arch里安装AUR软件</a></li><li class="chapter-item expanded "><a href="../linintro/vncpro.html"><strong aria-hidden="true">2.2.</strong> 远程使用Linux服务器桌面</a></li></ol></li><li class="chapter-item expanded "><a href="../phiintro/index.html"><strong aria-hidden="true">3.</strong> 音游写谱实用指南</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../phiintro/start.html"><strong aria-hidden="true">3.1.</strong> 让我们开始吧</a></li><li class="chapter-item expanded "><a href="../phiintro/1.html"><strong aria-hidden="true">3.2.</strong> 认识谱面</a></li></ol></li><li class="chapter-item expanded "><a href="../starain/index.html"><strong aria-hidden="true">4.</strong> 星雨引擎使用手册</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../starain/start.html"><strong aria-hidden="true">4.1.</strong> 安装星雨引擎</a></li><li class="chapter-item expanded "><a href="../starain/how-to.html"><strong aria-hidden="true">4.2.</strong> 如何制谱</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../first.html">前言</a></li><li class="chapter-item expanded "><a href="../winintro/index.html"><strong aria-hidden="true">1.</strong> Windows 实用指南</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../winintro/winrt.html"><strong aria-hidden="true">1.1.</strong> QEMU运行Windows RT 8.1</a></li><li class="chapter-item expanded "><a href="../winintro/winbomb.html"><strong aria-hidden="true">1.2.</strong> 拆除早期的Windows时间炸弹</a></li><li class="chapter-item expanded "><a href="../winintro/9xbomb.html"><strong aria-hidden="true">1.3.</strong> Windows 9x如何拆弹?</a></li></ol></li><li class="chapter-item expanded "><a href="../linintro/index.html"><strong aria-hidden="true">2.</strong> Linux 实用指南</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../linintro/aur.html"><strong aria-hidden="true">2.1.</strong> 在Arch里安装AUR软件</a></li><li class="chapter-item expanded "><a href="../linintro/vncpro.html"><strong aria-hidden="true">2.2.</strong> 远程使用Linux服务器桌面</a></li></ol></li><li class="chapter-item expanded "><a href="../phiintro/index.html"><strong aria-hidden="true">3.</strong> 音游写谱实用指南</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../phiintro/start.html"><strong aria-hidden="true">3.1.</strong> 让我们开始吧</a></li><li class="chapter-item expanded "><a href="../phiintro/1.html"><strong aria-hidden="true">3.2.</strong> 认识谱面</a></li></ol></li><li class="chapter-item expanded "><a href="../starain/index.html"><strong aria-hidden="true">4.</strong> 星雨引擎使用手册</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../starain/start.html" class="active"><strong aria-hidden="true">4.1.</strong> 安装星雨引擎</a></li><li class="chapter-item expanded "><a href="../starain/how-to.html"><strong aria-hidden="true">4.2.</strong> 如何制谱</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -160,69 +160,45 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="在x64-windows上运行windows-rt"><a class="header" href="#在x64-windows上运行windows-rt">在X64 Windows上运行Windows RT</a></h1>
-<hr />
-<p>这几天实在闲的没事干，于是乎就在网上翻镜像找,结果找到了Windows RT 8.1的完整镜像，但是是个ESD，为了大家方便，我已经把ESD镜像改成了ISO，里面是wim，可以直接下载。</p>
-<h2 id="创建硬盘"><a class="header" href="#创建硬盘">创建硬盘</a></h2>
-<p>这里引用BetaWorld百科安装Windows 10 ARM64的方法，依葫芦画瓢，安装Windows RT 8.1。</p>
-<p>首先创建硬盘，管理员cmd输入diskpart，回车。
-依次输入以下命令：</p>
-<pre><code class="language-bat">
-create vdisk file=&quot;C:\test\usb.vhd&quot;（这里是镜像位置，什么地方都行） maximum=32000 type=expandable （镜像大小必须是2的n次方，这里指定32GB）
-select vdisk file=&quot;C:\test\usb.vhd&quot;
-attach vdisk
-convert gpt
-create partition efi size=100（创建EFI分区）
-format fs=fat32 quick
-assign letter=p（指定卷标）
-create partition primary（创建系统分区）
-format quick
-assign letter=w
-exit
+                        <h1 id="安装星雨引擎"><a class="header" href="#安装星雨引擎">安装星雨引擎</a></h1>
+<blockquote>
+<p>本节聚焦：如何搭建Python环境以及安装星雨引擎模块</p>
+</blockquote>
+<h2 id="安装python"><a class="header" href="#安装python">安装Python</a></h2>
+<p>我们推荐您使用Python 3.11版本，和Windows操作系统，Linux的话其实更好，但是site-packages就得麻烦一些了……</p>
+<h3 id="windows-版本安装"><a class="header" href="#windows-版本安装">Windows 版本安装</a></h3>
+<p>下载Python 3.11的官方安装文件，<a href="https://www.python.org/ftp/python/3.11.0/python-3.11.0-amd64.exe">点击此链接即可</a></p>
+<blockquote>
+<p>上边链接是64位的，估计没人用32位实体电脑当主力机了吧……并且是官方链接，如果觉得下载慢请使用多线程或镜像下载</p>
+</blockquote>
+<h3 id="linux-版本安装"><a class="header" href="#linux-版本安装">Linux 版本安装</a></h3>
+<p>Debian系（适用于Ubuntu、Deepin、Kali、树莓派等）</p>
+<pre><code class="language-bash">sudo apt install python3
 </code></pre>
-<h2 id="释放镜像"><a class="header" href="#释放镜像">释放镜像</a></h2>
-<p>将ISO里的install.wim解压到某个位置，或者直接挂载ISO，假设盘符为D，以管理员身份运行cmd，执行以下命令：</p>
-<pre><code class="language-bat">
-dism /apply-image /imagefile:D:\install.wim /index:1 /applydir:W:
-bcdboot W:\Windows /s P: /f uefi
+<p>EL系（适用于RHEL、CentOS、Fedora等）</p>
+<pre><code class="language-bash">sudo dnf install python3
 </code></pre>
-<p>完成后弹出P或W盘。注意，P盘符会有残留，不用担心，重启就会消失。</p>
-<h2 id="启动安装"><a class="header" href="#启动安装">启动安装</a></h2>
-<p>普通的QEMU运行这个会出问题，所以这里要使用QEMU-winrt，这个项目是开源的，项目链接<a href="https://github.com/binarymaster/qemu/releases">在这</a></p>
-<h3 id="启动模拟器"><a class="header" href="#启动模拟器">启动模拟器</a></h3>
-<p>进入QEMU-winrt安装目录，执行以下命令：</p>
-<pre><code class="language-bat">
-G:\qemuwinrt\qemu-system-arm -M virt,highmem=false ^
--cpu cortex-a15 -accel tcg,thread=multi -m 2G ^
--bios QEMU_EFI_1512_driver1998.fd -device VGA ^
--device usb-kbd,id=kbd -device usb-tablet,id=mice ^
--drive id=usbcdrom,if=none,media=cdrom,format=raw,file=winpe_arm32.iso.uibak,readonly=on ^
--device usb-storage,drive=usbcdrom -drive id=mydrive,if=none,file=C:\test\usb.vhd ^
--device sd-card,drive=mydrive -nic user,model=virtio
+<p>Arch系（适用于Arch Linux、ALARM、Manjaro等）</p>
+<pre><code class="language-bash">sudo pacman -S python3
 </code></pre>
-<h3 id="安装系统"><a class="header" href="#安装系统">安装系统</a></h3>
-<p>开机后按F2，进入EFI设置，如果要修改分辨率，依次进入Device Manager、OVMF Platform Configuration，将Change Preferred项改为你想要的分辨率（例如1024x768），然后选Commit Changes and Exit，在QEMU菜单中选Machine下的Reset重启。</p>
-<h3 id="进入桌面"><a class="header" href="#进入桌面">进入桌面</a></h3>
-<p>耐心等待系统安装完成，通过OOBE并进入Press Ctrl-Alt-Delete to Unlock界面；</p>
-<p>或者强制退出QEMU，并挂载C:\test\usb.vhd；</p>
-<p>在宿主机打开注册表编辑器，单击HKEY_LOCAL_MACHINE，在菜单中选择“文件(F)→加载配置单元(L)...”，打开W:\Windows\System32\config\SOFTWARE，任意命名项（例如，arm），展开该项并定位至\Microsoft\Windows NT\CurrentVersion\Winlogon（不展开），在右侧新建字符串值，名为AutoAdminLogon，值为1，新建字符串值，名为DefaultUserName，值为Administrator，新建字符串值，名为DefaultPassword，值为在OOBE中设置的密码，完成后回到本机HKEY_LOCAL_MACHINE，在菜单中选择“文件(F)→卸载配置单元(U)...”，在弹出的对话框中选择“是(Y)”；</p>
-<h3 id="安装完成"><a class="header" href="#安装完成">安装完成</a></h3>
-<p>到这里系统就安装完成了。</p>
-<h2 id="下载链接"><a class="header" href="#下载链接">下载链接</a></h2>
-<p><a href="https://starmoe-my.sharepoint.com/:u:/g/personal/starmoe_starmoe_onmicrosoft_com/EcWz9HyQAndEt-gZyumG2rgBDlI73b779t1-xh0mUljfpw?e=be5jzj">ISO文件</a>，大小3.24GB，SHA256: B7AC0BDBD409AC0A0DE0066D233CEBF957D70B5D8F88A4133BEF663A890E0174
-（Host：OneDrive for Business - 亚太地区 - Starmoe-暮光工作室）<br />
-<a href="https://starmoe-my.sharepoint.com/:u:/g/personal/starmoe_starmoe_onmicrosoft_com/EfVzz4Qze2lFoRXJmXgpkHIBivWIj-Tfcq7IcDAQbn7u1w?e=5RUy7O">已经做好的vhd</a>，大小6.36GB，SHA256: 3453876D50097366C53EFADC699F2F3BD9C5142780C4F917E38B58843E8FCD72
-(Host：OneDrive for Business - 亚太地区 - Starmoe-暮光工作室)</p>
+<p>Alpine为“apk add python3”，Gentoo编译“emerge --ask pyton3”即可</p>
+<h2 id="安装先决条件"><a class="header" href="#安装先决条件">安装先决条件</a></h2>
+<p>在安装前，您需要安装Python的pip模块（如已安装请忽略）</p>
+<blockquote>
+<p>Windows用户请运行get-pip.py</p>
+</blockquote>
+<pre><code class="language-bash">pip install cocos2d
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../winintro/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../starain/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../winintro/winbomb.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../starain/how-to.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -232,11 +208,11 @@ G:\qemuwinrt\qemu-system-arm -M virt,highmem=false ^
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../winintro/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../starain/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../winintro/winbomb.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../starain/how-to.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
