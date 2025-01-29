@@ -8,19 +8,25 @@
       
       
       
+        <link rel="canonical" href="https://docs.moerain.cn/Linux%E5%85%A5%E9%97%A8/vncpro.html">
       
       
+        <link rel="prev" href="readme.html">
       
-      <link rel="icon" href="/assets/images/favicon.png">
+      
+        <link rel="next" href="wsl-systemd.html">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.50">
     
     
       
-        <title>萌雨社文档</title>
+        <title>远程使用Linux服务器桌面 - 萌雨社文档</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.a40c8224.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.a40c8224.min.css">
       
       
 
@@ -41,7 +47,7 @@
       
     
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -59,6 +65,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#linux" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -71,7 +82,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="/index.html" title="萌雨社文档" class="md-header__button md-logo" aria-label="萌雨社文档" data-md-component="logo">
+    <a href="../index.html" title="萌雨社文档" class="md-header__button md-logo" aria-label="萌雨社文档" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -91,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              远程使用Linux服务器桌面
             
           </span>
         </div>
@@ -141,7 +152,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/index.html" title="萌雨社文档" class="md-nav__button md-logo" aria-label="萌雨社文档" data-md-component="logo">
+    <a href="../index.html" title="萌雨社文档" class="md-nav__button md-logo" aria-label="萌雨社文档" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -171,7 +182,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/index.html" class="md-nav__link">
+      <a href="../index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -188,17 +199,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -212,7 +225,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Linux入门
@@ -226,7 +239,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/Linux%E5%85%A5%E9%97%A8/aur.html" class="md-nav__link">
+      <a href="aur.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -247,7 +260,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/Linux%E5%85%A5%E9%97%A8/readme.html" class="md-nav__link">
+      <a href="readme.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -265,10 +278,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/Linux%E5%85%A5%E9%97%A8/vncpro.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    远程使用Linux服务器桌面
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="vncpro.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -277,6 +310,86 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#step-1novnc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1.部署桌面和novnc
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1.部署桌面和novnc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tmoe" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用tmoe脚本（推荐）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      手动安装
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2.配置音频服务器
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3.将Linux音频连接到此电脑
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4.大功告成
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -289,7 +402,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/Linux%E5%85%A5%E9%97%A8/wsl-systemd.html" class="md-nav__link">
+      <a href="wsl-systemd.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -352,7 +465,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/Windows%E7%9F%A5%E8%AF%86/9xbomb.html" class="md-nav__link">
+      <a href="../Windows%E7%9F%A5%E8%AF%86/9xbomb.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -373,7 +486,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/Windows%E7%9F%A5%E8%AF%86/readme.html" class="md-nav__link">
+      <a href="../Windows%E7%9F%A5%E8%AF%86/readme.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -394,7 +507,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/Windows%E7%9F%A5%E8%AF%86/winbomb.html" class="md-nav__link">
+      <a href="../Windows%E7%9F%A5%E8%AF%86/winbomb.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -415,7 +528,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/Windows%E7%9F%A5%E8%AF%86/winrt.html" class="md-nav__link">
+      <a href="../Windows%E7%9F%A5%E8%AF%86/winrt.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -478,7 +591,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/%E9%9F%B3%E6%B8%B8%E5%88%B6%E8%B0%B1/1.html" class="md-nav__link">
+      <a href="../%E9%9F%B3%E6%B8%B8%E5%88%B6%E8%B0%B1/1.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -499,7 +612,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/%E9%9F%B3%E6%B8%B8%E5%88%B6%E8%B0%B1/readme.html" class="md-nav__link">
+      <a href="../%E9%9F%B3%E6%B8%B8%E5%88%B6%E8%B0%B1/readme.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -520,7 +633,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/%E9%9F%B3%E6%B8%B8%E5%88%B6%E8%B0%B1/start.html" class="md-nav__link">
+      <a href="../%E9%9F%B3%E6%B8%B8%E5%88%B6%E8%B0%B1/start.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -558,6 +671,76 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#step-1novnc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1.部署桌面和novnc
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1.部署桌面和novnc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tmoe" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用tmoe脚本（推荐）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      手动安装
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2.配置音频服务器
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3.将Linux音频连接到此电脑
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4.大功告成
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -569,8 +752,98 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+  
+  
+
+
+<h1 id="linux">远程使用Linux服务器桌面</h1>
+<p>相信大家都有一个疑问：如何在浏览器里进行远程桌面访问，并且还要将对端的音频传输进来，否则只有视频，没有音频会令人很难受。</p>
+<p>那么本节内容就针对此问题提供了一个解决方案。</p>
+<h2 id="step-1novnc">Step 1.部署桌面和novnc</h2>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>如果您在此之前已完成了此步骤，那么直接看第二步吧！</p>
+</div>
+<h3 id="tmoe">使用tmoe脚本（推荐）</h3>
+<p>安装tmoe脚本的命令如下：</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>curl<span class="w"> </span>-L<span class="w"> </span>l.tmoe.me<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>tmoe.sh
+bash<span class="w"> </span>tmoe.sh
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>在安装过程中可能会用到管理员/root权限，请准备好管理员/root的密码。</p>
+</div>
+<p>之后此脚本会引导您配置语言和设置，并且有全中文的安装过程，如果您还是不懂，请跟紧以下步骤：</p>
+<p>1.进入选择Manager还是Tools界面时，选择Tools选项，之后选择“ 1 🍭 GUI:图形界面(桌面,WM,登录管理器)” &gt; “1 🍰 rootless_DE(无root容器可运行:xfce,kde,mate,lxqt)” &gt; “1 🐭 xfce(兼容性高,简单优雅)”</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>注意：在选择桌面时，可以根据自己喜好和服务端压力酌情选择，一般来讲xfce是最好的选择。</p>
+</div>
+<p>2.停顿到“按回车键继续，输n返回”时，请按回车键继续。</p>
+<p>3.您可根据喜好和服务器负载酌情选择是否安装Electron工具箱和Chromium浏览器。</p>
+<p>4.停顿到“您是否需要配置X11VNC服务？”时，请按回车键继续。</p>
+<p>5.<em>重要</em> 停顿到“您是否需要配置novnc？”时，请按回车键继续。</p>
+<p>6.设置好vnc密码，退出tmoe脚本。</p>
+<p>7.在命令行下键入“novnc”命令后，应该会出现以下文本</p>
+<div class="highlight"><pre><span></span><code>Using installed websockify at /usr/bin/websockify
+Starting webserver and WebSockets proxy on port 36080
+
+
+Navigate to this URL:
+
+    http://Starmoe-NuanR:36080/vnc.html?host=Starmoe-NuanR&amp;port=36080
+
+Press Ctrl-C to exit
+
+
+WebSocket server settings:
+  - Listen on :36080
+  - Web server. Web root: /usr/share/novnc
+  - No SSL/TLS support (no cert file)
+  - proxying from :36080 to localhost:5902
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>在此实例中，“Starmoe-NuanR”为主机名</p>
+</div>
+<p>之后在浏览器键入http://&lt;你的Linux主机的局域网地址&gt;:36080/vnc.html，您应该会看到novnc的连接界面，单击“连接”，输入vnc密码后即可进入桌面。</p>
+<h3 id="_1">手动安装</h3>
+<blockquote>
+<p>真没想到这段教程被辉夜给咕了，愿有志之士前来补充。</p>
+</blockquote>
+<h2 id="step-2">Step 2.配置音频服务器</h2>
+<p>我相信大多数阅读此文档的用户使用的是Windows 操作系统，接下来介绍在Windows 端设置PulseAudio服务器以及将Linux音频远程连接到此。</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>本段文章参考了<a href="https://ciallo.work/archives/756">此博客</a></p>
+</div>
+<p>由于PulseAudio官方服务端不维护了，有一个版本更新的第三方维护的，版本比较新的客户端：PulseAudio-win32可以使用。</p>
+<p>您可以<a href="https://ciallo.work/wp-content/uploads/2024/03/1711208370-pulseaudio-win32-installer-v5.zip">点此</a>进行下载（如果前者链接下载缓慢或者无法访问，请使用此<a href="https://ciallo.work/wp-content/uploads/2024/03/1711208370-pulseaudio-win32-installer-v5.zip">镜像</a>）</p>
+<p>下载完成后打开安装包安装，在配置界面确保你选中了如下图所示的选项。</p>
+<p><img alt="PulseAudio Server的配置页面" src="https://ciallo.work/wp-content/uploads/2024/03/1711209767-image.png" /></p>
+<p>之后此服务将会随计算机自动启动，请您放心，它是不吃资源的。</p>
+<h2 id="step-3linux">Step 3.将Linux音频连接到此电脑</h2>
+<p>您可以使用如下命令将Linux的音频连接到此电脑：</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">PULSE_SERVER</span><span class="o">=</span>tcp:&lt;你电脑的地址&gt;:4713
+</code></pre></div>
+<p>如果您觉得每次都要这么载入一遍，嫌麻烦的话，你也可以将此命令写入你的shell变量里（例如.bashrc）</p>
+<h2 id="step-4">Step 4.大功告成</h2>
+<p>到这里教程基本就结束了，您仅需要重新载入您的novnc即可。接下来就在您的web端桌面好好享受多媒体带来的乐趣吧！</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -604,10 +877,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "/", "features": [], "search": "/assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.60a45f97.min.js"></script>
+      <script src="../assets/javascripts/bundle.60a45f97.min.js"></script>
       
     
   </body>
